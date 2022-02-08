@@ -8,6 +8,8 @@ import webbrowser as wb
 import os
 import pyautogui
 import psutil
+import pyjokes
+
 
 engine=pyttsx3.init()
 
@@ -150,6 +152,11 @@ def batteryPercentage():
     speak("Battery is at ") 
     speak(battery.percent)
     
+#jokes function
+def jokes():
+    speak("Here is a joke for you:")
+    speak(pyjokes.get_joke())
+
 #main function
 if __name__ == "__main__":
     greet()
@@ -186,5 +193,7 @@ if __name__ == "__main__":
             statsCPU()
         elif "battery" in query:
             batteryPercentage()
+        elif "joke" or "jokes" in query:
+            jokes()
         elif "power off" in query:
             quit()
