@@ -17,6 +17,7 @@ def speak(audio):
 #Time function
 def time():
     now=datetime.datetime.now()
+    speak("current time is")
     currentTime=now.strftime("%I:%M %p")
     speak(currentTime)
 
@@ -29,4 +30,10 @@ def date():
     speak(now.strftime("%Y"))
     speak(now.strftime("%A"))
 
-date()
+#Greet Function
+def greet():
+    speak("Welcome back sir!")
+    time()
+    speak("How can i help you?")
+
+greet()
