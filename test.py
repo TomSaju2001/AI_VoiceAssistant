@@ -32,7 +32,17 @@ def date():
 
 #Greet Function
 def greet():
-    speak("Welcome back sir!")
+    hour=datetime.datetime.now().hour
+
+    if hour>=6 and hour<12:
+        speak("Good morning. Welcome back sir!")
+    elif hour>=12 and hour<5:
+        speak("Good afternoon. Welcome back sir!")
+    elif hour>=5 and hour<24:
+        speak("Good evening. Welcome back sir!")
+    else:
+        speak("Good evening. Welcome back sir!")
+    
     time()
     speak("How can i help you?")
 
