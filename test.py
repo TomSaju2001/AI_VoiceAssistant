@@ -16,7 +16,17 @@ def speak(audio):
 
 #Time function
 def time():
-    currentTime=datetime.datetime.now().strftime("%I:%M %p")
+    now=datetime.datetime.now()
+    currentTime=now.strftime("%I:%M %p")
     speak(currentTime)
 
-time()
+#Date function
+def date():
+    now=datetime.datetime.now()
+    speak("Today's Date is")
+    speak(now.day)
+    speak(now.strftime("%B"))
+    speak(now.strftime("%Y"))
+    speak(now.strftime("%A"))
+
+date()
