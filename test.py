@@ -134,5 +134,9 @@ if __name__ == "__main__":
             os.system("shutdown /s /t 1")
         elif "restart system" in query:
             os.system("shutdown /r /t 1")
+        elif "play song" in query:
+            songs_dir="D:\Songs"
+            songs=os.listdir(songs_dir)
+            os.startfile(os.path.join(songs_dir, songs[0]))
         elif "power off" in query:
             quit()
