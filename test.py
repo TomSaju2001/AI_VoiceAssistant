@@ -110,6 +110,27 @@ def searchChrome():
     search=takeCommand().lower()
     wb.get(chromePath).open_new_tab(search + ".com")
 
+#play song function
+def playSong():
+    songs_dir="D:\Songs"
+    #list of songs
+    songs=os.listdir(songs_dir)
+    #play first song in list
+    os.startfile(os.path.join(songs_dir, songs[0]))
+
+#remember function
+def rememberThis():
+    speak("What should i remember?")
+    data = takeCommand()
+    speak("You said" + data + "This will be saved.!")
+    remember=open("data.txt", "w")
+    remember.write(data)
+    remember.close()
+
+def readData():
+    remember=open("data.txt", "r")
+    speak("You said me to remember thta"+remember.read())
+
 #main function
 if __name__ == "__main__":
     greet()
@@ -135,8 +156,10 @@ if __name__ == "__main__":
         elif "restart system" in query:
             os.system("shutdown /r /t 1")
         elif "play song" in query:
-            songs_dir="D:\Songs"
-            songs=os.listdir(songs_dir)
-            os.startfile(os.path.join(songs_dir, songs[0]))
+            playSong()
+        elif "remember this" in query:
+           rememberThis()
+        elif "do you remember anything" in query:
+             readData()
         elif "power off" in query:
             quit()
