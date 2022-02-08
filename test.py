@@ -3,7 +3,8 @@ import pyttsx3
 import datetime
 import speech_recognition as sr
 import wikipedia
-import smtplib 
+import smtplib
+import webbrowser as wb
 
 engine=pyttsx3.init()
 
@@ -117,5 +118,10 @@ if __name__ == "__main__":
             wikipediaSearch(query)
         elif "send email" in query:
             callSendMail()
+        elif "chrome browser" in query:
+            speak("What should i search for?")
+            chromePath="C:\Program Files\Google\Chrome\Application\chrome.exe %s"
+            search=takeCommand().lower()
+            wb.get(chromePath).open_new(search + ".com")
         elif "power off" in query:
             quit()
