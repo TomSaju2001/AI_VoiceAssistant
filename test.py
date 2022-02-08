@@ -2,6 +2,7 @@ from multiprocessing.connection import Listener
 import pyttsx3
 import datetime
 import speech_recognition as sr
+import wikipedia 
 
 engine=pyttsx3.init()
 
@@ -67,8 +68,15 @@ def takeCommand():
 
     return query
 
-if __name__ == "__main__":
+#wikipedia function
+def wikipediaSearch(query):
+    speak("Searching...")
+    query=query.replace("wikipedia", "")
+    result = wikipedia.summary(query, sentences=3)
+    speak(result)
 
+#main function
+if __name__ == "__main__":
     greet()
 
     while True:
@@ -81,3 +89,5 @@ if __name__ == "__main__":
             date()
         elif "power off" in query:
             quit()
+        elif "wikipedia" in query:
+            wikipediaSearch(query)
