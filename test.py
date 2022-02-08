@@ -1,5 +1,8 @@
+from multiprocessing.connection import Listener
 import pyttsx3
 import datetime
+import speech_recognition as sr
+
 engine=pyttsx3.init()
 
 #Voice and Speech rate
@@ -46,4 +49,23 @@ def greet():
     time()
     speak("How can i help you?")
 
-greet()
+#Function to take command from user
+def takeCommand():
+    listener=sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        listener.pause_threshold=1
+        audio=listener.listen(source)
+
+    try:
+        print("Recognizing..")
+        query = listener.recognize_google(audio, language='en-US')
+        print(query)
+    except Exception as e:
+        print(e)
+        speak("Say it again...")
+        return "None"
+
+    return query
+
+takeCommand()
