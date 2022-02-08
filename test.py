@@ -1,5 +1,10 @@
 import pyttsx3
 
 engine=pyttsx3.init()
-engine.say("Hello, World!")
-engine.runAndWait()
+
+#speak function
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+speak("Tom Saju")
