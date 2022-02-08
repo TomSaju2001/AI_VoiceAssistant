@@ -5,6 +5,7 @@ import speech_recognition as sr
 import wikipedia
 import smtplib
 import webbrowser as wb
+import os
 
 engine=pyttsx3.init()
 
@@ -102,6 +103,13 @@ def callSendMail():
         speak(error)
         speak("Unable to send the message. please contact the developer.!")
 
+#chrome search
+def searchChrome():
+    speak("What should i search for?")
+    chromePath="C:\Program Files\Google\Chrome\Application\chrome.exe %s"
+    search=takeCommand().lower()
+    wb.get(chromePath).open_new_tab(search + ".com")
+
 #main function
 if __name__ == "__main__":
     greet()
@@ -119,9 +127,12 @@ if __name__ == "__main__":
         elif "send email" in query:
             callSendMail()
         elif "chrome browser" in query:
-            speak("What should i search for?")
-            chromePath="C:\Program Files\Google\Chrome\Application\chrome.exe %s"
-            search=takeCommand().lower()
-            wb.get(chromePath).open_new(search + ".com")
+            searchChrome()
+        elif "logout system" in query:
+            os.system("shutdown -l")
+        elif "shutdown system" in query:
+            os.system("shutdown /s /t 1")
+        elif "restart system" in query:
+            os.system("shutdown /r /t 1")
         elif "power off" in query:
             quit()
