@@ -2,7 +2,8 @@ from multiprocessing.connection import Listener
 import pyttsx3
 import datetime
 import speech_recognition as sr
-import wikipedia 
+import wikipedia
+import smtplib 
 
 engine=pyttsx3.init()
 
@@ -75,6 +76,31 @@ def wikipediaSearch(query):
     result = wikipedia.summary(query, sentences=3)
     speak(result)
 
+#mail function
+def sendMail(reciever,message):
+    portNumber=587
+    mailId="yourmail.gmail.com"
+    password="yourPassword"
+    recieverMailID="reciever@gmail.com"
+    server=smtplib.SMTP('smtp.gmail.com', portNumber)
+    server.echo()
+    server.starttls()
+    server.login(mailId, password)
+    server.sendmail(mailId, recieverMailID, message)
+    server.close()
+
+
+#email main function
+def callSendMail():
+    try:
+        speak("What is the message?")
+        message=takeCommand()
+        reciever=takeCommand()
+        sendMail(reciever, message)
+    except Exception as error:
+        speak(error)
+        speak("Unable to send the message. please contact the developer.!")
+
 #main function
 if __name__ == "__main__":
     greet()
@@ -87,7 +113,9 @@ if __name__ == "__main__":
             time()
         elif "date" in query:
             date()
-        elif "power off" in query:
-            quit()
         elif "wikipedia" in query:
             wikipediaSearch(query)
+        elif "send email" in query:
+            callSendMail()
+        elif "power off" in query:
+            quit()
