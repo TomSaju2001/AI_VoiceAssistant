@@ -46,7 +46,6 @@ def greet():
     else:
         speak("Good evening. Welcome back sir!")
     
-    time()
     speak("How can i help you?")
 
 #Function to take command from user
@@ -61,11 +60,24 @@ def takeCommand():
         print("Recognizing..")
         query = listener.recognize_google(audio, language='en-US')
         print(query)
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
         speak("Say it again...")
         return "None"
 
     return query
 
-takeCommand()
+if __name__ == "__main__":
+
+    greet()
+
+    while True:
+        query=takeCommand().lower()
+        #print(query)
+
+        if "time" in query:
+            time()
+        elif "date" in query:
+            date()
+        elif "power off" in query:
+            quit()
