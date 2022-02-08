@@ -6,6 +6,7 @@ import wikipedia
 import smtplib
 import webbrowser as wb
 import os
+import pyautogui
 
 engine=pyttsx3.init()
 
@@ -131,6 +132,11 @@ def readData():
     remember=open("data.txt", "r")
     speak("You said me to remember thta"+remember.read())
 
+#take Screenshot
+def takeScreenshot():
+    image=pyautogui.screenshot()
+    image.save("D:\screenshot.png")
+
 #main function
 if __name__ == "__main__":
     greet()
@@ -161,5 +167,7 @@ if __name__ == "__main__":
            rememberThis()
         elif "do you remember anything" in query:
              readData()
+        elif "take screenshot" in query:
+            takeScreenshot()
         elif "power off" in query:
             quit()
